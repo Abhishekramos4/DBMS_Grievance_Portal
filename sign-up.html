@@ -26,39 +26,199 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
-    <div class="jumbotron">
+  <body style="padding-top:3%;padding-bottom: 3%;">
+    <div
+      style="width: 80%;margin: 0 auto; background-color:rgb(211, 203, 203); border-radius: 25px; padding: 2%;"
+    >
+      <h3 style="text-align: center;">Register</h3>
       <form className="formStyle" action="/sign-up" method="POST">
-        <h3 style>Register</h3>
+        <div id="Personal-Details">
+          <h6>Personal Details</h6>
+          <div class="form-row">
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">First Name</span>
+                </div>
+                <input type="text" class="form-control" placeholder="" />
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Last Name</span>
+                </div>
+                <input type="text" class="form-control" placeholder="" />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-8 col-md-8">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-at"></i
+                  ></span>
+                </div>
+                <input type="email" class="form-control" placeholder="Email" />
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-phone"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Phone Number"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars"></i>Gender</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option  value="Male"selected>Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="fas fa-calendar-alt"></i
+                  ></span>
+                </div>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Date of Birth"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="College Details">
+          <h6>College Details</h6>
+          <div class="form-row">
+            <div class="col-lg-6 col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">College ID</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="eg:181080039"
+                />
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Semester</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option  value="I"selected>I</option>
+                  <option value="II">II</option>
+                  <option value="III">III</option>
+                  <option value="IV">IV</option>
+                  <option value="V">V</option>
+                  <option value="VI">VI</option>
+                  <option value="VII">VII</option>
+                  <option value="VIII">VIII</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Year</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option  value="First"selected>First</option>
+                  <option value="Second">Second</option>
+                  <option value="Third">Third</option>
+                  <option value="Fourth">Fourth</option>
+                  
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Program</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option  value="B.Tech"selected>B.Tech</option>
+                  <option value="M.Tech">M.Tech</option>
+                  <option value="PHD">Ph.D</option>
+                  <option value="MCA">M.C.A</option>
+                  <option value="Diploma">Diploma</option>
+                 
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Department</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option  value="IT"selected>Information Technology</option>
+                  <option value="CS">Computer Science</option>
+                  <option value="Elec">Electrical</option>
+                  <option value="EXTC">Electronics and Telecommunication</option>
+                  <option value="Tronics">Electronics</option>
+                  <option value="Prod">Production</option>
+                  <option value="Textile">Textile</option>
+                  <option value="Mech">Mechanical</option>
+                  <option value="Civil">Civil</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="Security Details">
+          <h6>Security Details</h6>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id=""
+                ><i class="fas fa-lock"></i
+              ></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Password" />
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Confirm Password"
+            />
+          </div>
+        </div>
 
-        <input
-          type="text"
-          id="inputID"
-          name="CollegeIdReg"
-          class="form-control inputStyle"
-          placeholder="College ID"
-          required
-          autofocus
-        />
-        <input
-          type="password"
-          name="passwordReg"
-          id="inputPassword"
-          class="form-control inputStyle"
-          placeholder="Password"
-          required
-        />
-        <input
-          type="password"
-          name="RePassword"
-          id="RePassword"
-          class="form-control inputStyle"
-          placeholder="Confirm Password"
-          required
-        />
-
-        <button class="btn btn-primary btnStyle">Submit</button>
+        <button class="btn btn-primary btnStyle" style="margin-top: 2%;">
+          Submit
+        </button>
       </form>
     </div>
   </body>

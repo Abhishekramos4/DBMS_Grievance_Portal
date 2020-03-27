@@ -1,16 +1,42 @@
-.formStyle
-{ 
-  width: 50%;
+html,body{
+  height: 100%;
+  margin: 0;
 }
-.inputStyle
-{  
-  margin-bottom: 5%;
+.wrapper{
+  padding-top: 5%;
+  padding-bottom:5%;
+  height: 100%;
+  background-color:#282828;
 }
-.btnStyle
-{
+.formStyle {
+  padding: 5%;
+}
+.inputStyle {
+  margin-bottom: 2%;
+}
+.btnStyle {
   width: 100%;
+  font-size: large;
 }
-a{
+.jumbotron{
+  width: 80%;
+  margin: 0 auto;
+  height: 80%;
 
-    color: white;
+}
+.container-fluid{
+padding-top: 5%;
+padding-bottom: 5%;
+
+}
+.child1{
+  width: 50%;
+  display: inline-block;
+  height: 100%;
+}
+.imageContainer{
+background-image: url('VJTI.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+border-radius: 2%;
 }

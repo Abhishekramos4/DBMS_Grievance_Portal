@@ -18,7 +18,7 @@ const passWord=req.body.password;
 });
 app.get('/sign-up',function(req,res){
 
-res.sendFile(_dirname+"/sign-up.html");
+res.sendFile(__dirname+"/sign-up.html");
 });
 
 app.post('/sign-up',function(req,res){
