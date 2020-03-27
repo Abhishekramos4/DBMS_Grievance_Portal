@@ -50,7 +50,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">First Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" />
+                <input type="text" class="form-control" placeholder="" name="fname"/>
               </div>
             </div>
             <div class="col">
@@ -58,7 +58,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Last Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" />
+                <input type="text" class="form-control" placeholder="" name="lname" />
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
                     ><i class="fas fa-at"></i
                   ></span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email" />
+                <input type="email" class="form-control" placeholder="Email" name="email" />
               </div>
             </div>
             <div class="col">
@@ -84,6 +84,7 @@
                   type="text"
                   class="form-control"
                   placeholder="Phone Number"
+                  name="phone"
                 />
               </div>
             </div>
@@ -92,9 +93,9 @@
             <div class="col">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars"></i>Gender</label>
+                  <label class="input-group-text" for="GenderSelect"><i class="fas fa-venus-mars"></i>Gender</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="GenderSelect" name="gender">
                   <option  value="Male"selected>Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -111,6 +112,7 @@
                   type="date"
                   class="form-control"
                   placeholder="Date of Birth"
+                  name="DOB"
                 />
               </div>
             </div>
@@ -128,15 +130,16 @@
                   type="text"
                   class="form-control"
                   placeholder="eg:181080039"
+                  name="collegeID"
                 />
               </div>
             </div>
             <div class="col-lg-3 col-md-3">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Semester</label>
+                  <label class="input-group-text" for="SemSelect">Semester</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="SemSelect" name="sem">
                   <option  value="I"selected>I</option>
                   <option value="II">II</option>
                   <option value="III">III</option>
@@ -151,9 +154,9 @@
             <div class="col-lg-3 col-md-3">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Year</label>
+                  <label class="input-group-text" for="YearSelect">Year</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="YearSelect" name="year">
                   <option  value="First"selected>First</option>
                   <option value="Second">Second</option>
                   <option value="Third">Third</option>
@@ -167,9 +170,9 @@
             <div class="col">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Program</label>
+                  <label class="input-group-text" for="programSelect" >Program</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="programSelect" name="program">
                   <option  value="B.Tech"selected>B.Tech</option>
                   <option value="M.Tech">M.Tech</option>
                   <option value="PHD">Ph.D</option>
@@ -182,9 +185,9 @@
             <div class="col">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <label class="input-group-text" for="inputGroupSelect01">Department</label>
+                  <label class="input-group-text" for="departmentSelect">Department</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="departmentSelect" name="department">
                   <option  value="IT"selected>Information Technology</option>
                   <option value="CS">Computer Science</option>
                   <option value="Elec">Electrical</option>
@@ -207,11 +210,12 @@
                 ><i class="fas fa-lock"></i
               ></span>
             </div>
-            <input type="password" class="form-control" placeholder="Password" />
+            <input type="password" class="form-control" placeholder="Password" name="password" />
             <input
               type="password"
               class="form-control"
               placeholder="Confirm Password"
+              name="repassword"
             />
           </div>
         </div>
