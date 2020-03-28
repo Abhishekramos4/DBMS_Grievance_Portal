@@ -2,10 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
-app.use("view engine","ejs");
+// app.use("view engine","ejs");
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
 mongoose.connect('mongodb://localhost:27017/GrievanceDB', { useNewUrlParser: true, useUnifiedTopology: true });
 const RegisterSchema = {
 
@@ -17,7 +19,7 @@ const RegisterSchema = {
     DOB: { type: Date },
     
     collegeID: {
-        type: String,
+        type: Number ,
         unique: true
     },
     semester: { type: String },
@@ -29,11 +31,8 @@ const RegisterSchema = {
     repassword: { type: String }
 
 
-}
+};
 const registerModel = mongoose.model('student', RegisterSchema);
-
-
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
@@ -78,11 +77,11 @@ app.post('/sign-up', function (req, res) {
             else{
                 res.redirect('/success');
             }
-
+            app.get('/success',function(req,res){res.sendFile(__dirname+"/success.html");});
         });
     }
 });
-app.get('/')
+app.get('/');
 app.listen(3000, function () {
     console.log("Server running on port 3000");
 });
