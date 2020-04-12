@@ -36,13 +36,56 @@
     </script>
   </head>
   <body>
-    <div class="container-fluid"style="background-image: linear-gradient(to right,black,grey);">
-      <div class="row jumbotron" >
-        <div class="imageContainer col-lg-5 col-m-7 col-xs-12"> </div>
+    <nav
+      class="navbar navbar-expand-lg navbar-light"
+      style="
+      border-bottom: 1px solid rgba(34, 34, 34, 0.05);
+      background-color: #fff;
+      box-shadow: 1px 1px 2px 1px grey;
+    "
+    >
+      <a class="navbar-brand" href="/"
+        
+      ><img
+          src="https://www.careerindia.com/img/400x100/2012/05/18-vjtimumbai.jpg"
+          class="d-inline-block align-top"
+          height="55"
+          width="60"
+        /><span style="font-size: 2rem; color: grey;"> Grievance Portal</span></a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+      </div> -->
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row jumbotron">
+        <div class="imageContainer col-lg-5 col-m-7 col-xs-12"></div>
         <div class="col-lg-7 col-m-7 col-xs-12">
           <h3 style="text-align: center;">VJTI Grievance Portal</h3>
           <form class="formStyle" method="POST" action="/">
-            <h5 style="color: rgb(110, 109, 109);margin-bottom: 2%;">Sign into your account</h5>
+            <h5 style="color: rgb(110, 109, 109); margin-bottom: 2%;">
+              Sign into your account
+            </h5>
             <input
               type="text"
               name="collegeID"
@@ -64,22 +107,24 @@
               <input type="checkbox" class="checkStyle" /> Remember Me
             </label>
             <br />
-            <button class="btn btn-outline-primary btnStyle" >Submit</button>
-            <div  class="row" style="padding:3.5%">
-            <button
-              class="btn btn-outline-success col-lg-6 col-xs-12 " 
-              id="Register"
-              onclick="link()"
-            >
-              New User? SignUp
-            </button>
-            <button class="btn btn-outline-danger col-xs-12 col-lg-6" id="ForgotPassword">
-              Forgot Password
-            </button>
+            <button class="btn btn-outline-primary btnStyle">Submit</button>
+            <div class="row" style="padding: 3.5%;">
+              <button
+                class="btn btn-outline-success col-lg-6 col-xs-12"
+                id="Register"
+                onclick="link()"
+              >
+                New User? SignUp
+              </button>
+              <button
+                class="btn btn-outline-danger col-xs-12 col-lg-6"
+                id="ForgotPassword"
+              >
+                Forgot Password
+              </button>
             </div>
           </form>
         </div>
-       
       </div>
     </div>
   </body>

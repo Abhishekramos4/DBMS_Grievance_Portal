@@ -41,14 +41,11 @@ const RegisterSchema = {
 
 //Schema for Complaint 
 const ComplaintSchema = {
-    _id: {
-        type: String,
-        require: true
-    },
     collegeID: { type: String },
     dateIssued: { type: Date, },
+    location: { type: String },
     section: { type: String },
-    complaintText: { type: String },
+    description: { type: String },
     dateResolved: { type: Date }
 
 }
@@ -120,31 +117,69 @@ app.post('/sign-up', function (req, res) {
 //Profile Route
 app.get('/profile', function (req, res) {
 
-    res.render("profile", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc });
-
-});
-
-var complaintID = 0;
-app.post('/profile', function (req, res) {
-    complaintID += 1;
-    var lodgedComplaint = new complaintModel({
-
-        _id: complaintID,
-        collegeID: collegeIDdoc,
-        dateIssued: new Date(),
-        section: req.body.section,
-        complaintText: req.body.complaint,
-        dateResolved: null
-    })
-    lodgedComplaint.save(function (err) {
-        if (err) {
-            console.log(err);
-        }
+    complaintModel.find(function (err, docs) {
+        if (err) { console.log(err) }
         else {
-            console.log("Success");
+            console.log(docs);
+            res.render("profile", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc, complaints: docs });
+
         }
     });
+
 });
+//register complaint route 
+app.route('/profile-register')
+    .get(function (req, res) {
+        res.render("compsubmit")
+    })
+    .post(function (req, res) {
+        var lodgedComplaint = new complaintModel({
+            collegeID: collegeIDdoc,
+            dateIssued: new Date(),
+            location: req.body.location,
+            section: req.body.section,
+            description: req.body.description,
+            dateResolved: null
+        })
+        lodgedComplaint.save(function (err) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("Success");
+            }
+        });
+    });
+
+
+//Sending Json route(Sorting)
+app.route('/complaints/:location/:section')
+    .get(function (req, res) {
+        var location = req.params.location;
+        var section = req.params.section;
+        console.log(location);
+        console.log(section);
+        
+        
+        if (location == "All" && section == "null") { complaintModel.find({ location: location }, function(err,docs){
+            if(err){console.log(err);
+            }
+            else{
+                res.send(docs);
+            }
+          
+
+        }) }
+
+        else {
+            complaintModel.find({ location: location, section: section }, function (err, docs) {
+                if (err) { console.log(err) }
+                else {
+                    res.send(docs);
+                }
+            });
+        }
+    });
 
 //Admin Route
 app.get('/admin', function (req, res) {
@@ -152,7 +187,7 @@ app.get('/admin', function (req, res) {
         if (err) { console.log(err) }
         else {
             console.log(docs);
-            res.render("admin", {complaints:docs});
+            res.render("admin", { complaints: docs });
 
         }
 
