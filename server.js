@@ -130,7 +130,7 @@ app.get('/profile', function (req, res) {
 //register complaint route 
 app.route('/profile-register')
     .get(function (req, res) {
-        res.render("compsubmit")
+        res.render("compsubmit", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc })
     })
     .post(function (req, res) {
         var lodgedComplaint = new complaintModel({
@@ -159,27 +159,14 @@ app.route('/complaints/:location/:section')
         var section = req.params.section;
         console.log(location);
         console.log(section);
-        
-        
-        if (location == "All" && section == "null") { complaintModel.find({ location: location }, function(err,docs){
-            if(err){console.log(err);
-            }
-            else{
+        complaintModel.find({ location: location, section: section }, function (err, docs) {
+            if (err) { console.log(err) }
+            else {
                 res.send(docs);
             }
-          
-
-        }) }
-
-        else {
-            complaintModel.find({ location: location, section: section }, function (err, docs) {
-                if (err) { console.log(err) }
-                else {
-                    res.send(docs);
-                }
-            });
-        }
-    });
+        });
+    }
+    );
 
 //Admin Route
 app.get('/admin', function (req, res) {
