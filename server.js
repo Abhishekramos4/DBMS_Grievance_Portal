@@ -46,7 +46,8 @@ const ComplaintSchema = {
     location: { type: String },
     section: { type: String },
     description: { type: String },
-    dateResolved: { type: Date }
+    dateResolved: { type: Date },
+    isSolved: { type: Boolean }
 
 }
 
@@ -64,7 +65,7 @@ app.post('/', function (req, res) {
     var collegeIDlogin = req.body.collegeID;
     var passwordlogin = req.body.password;
     if (collegeIDlogin == "admin" && passwordlogin == "admin") {
-        res.redirect('/admin')
+        res.redirect('/admin-page')
     }
     else {
         registerModel.findById(collegeIDlogin, function (err, doc) {
@@ -117,7 +118,7 @@ app.post('/sign-up', function (req, res) {
 //Profile Route
 app.get('/profile', function (req, res) {
 
-    complaintModel.find(function (err, docs) {
+    complaintModel.find({ isSolved: false }, function (err, docs) {
         if (err) { console.log(err) }
         else {
             console.log(docs);
@@ -127,39 +128,73 @@ app.get('/profile', function (req, res) {
     });
 
 });
-//register complaint route 
-app.route('/profile-register')
-    .get(function (req, res) {
-        res.render("compsubmit", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc })
-    })
-    .post(function (req, res) {
-        var lodgedComplaint = new complaintModel({
-            collegeID: collegeIDdoc,
-            dateIssued: new Date(),
-            location: req.body.location,
-            section: req.body.section,
-            description: req.body.description,
-            dateResolved: null
+
+//Profile-Solved Route
+app.get('/profile-solved', function (req, res) {
+    complaintModel.find({ isSolved: true }, function (err, docs) {
+        if (err) { console.log(err) }
+        else {
+            console.log(docs);
+            res.render("profilesolved", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc, complaints: docs });
+
+        }
+    });});
+
+
+
+
+
+
+    //register complaint route 
+    app.route('/profile-register')
+        .get(function (req, res) {
+            res.render("compsubmit", { name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc })
         })
-        lodgedComplaint.save(function (err) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log("Success");
-            }
+        .post(function (req, res) {
+            var lodgedComplaint = new complaintModel({
+                collegeID: collegeIDdoc,
+                dateIssued: new Date(),
+                location: req.body.location,
+                section: req.body.section,
+                description: req.body.description,
+                dateResolved: null,
+                isSolved: false
+            })
+            lodgedComplaint.save(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log("Success");
+                }
+            });
         });
-    });
 
 
-//Sending Json route(Sorting)
-app.route('/complaints/:location/:section')
+    //Sending Json route  (Sorting)    PENDING
+    app.route('/complaints-pending/:location/:section')
+        .get(function (req, res) {
+            var location = req.params.location;
+            var section = req.params.section;
+            console.log(location);
+            console.log(section);
+            complaintModel.find({isSolved:false, location: location, section: section }, function (err, docs) {
+                if (err) { console.log(err) }
+                else {
+                    res.send(docs);
+                }
+            });
+        }
+        );
+
+    //Sending Json route  (Sorting)            SOLVED 
+    app.route('/complaints-solved/:location/:section')
     .get(function (req, res) {
         var location = req.params.location;
         var section = req.params.section;
         console.log(location);
         console.log(section);
-        complaintModel.find({ location: location, section: section }, function (err, docs) {
+        complaintModel.find({ isSolved:true,location: location, section: section }, function (err, docs) {
             if (err) { console.log(err) }
             else {
                 res.send(docs);
@@ -168,20 +203,39 @@ app.route('/complaints/:location/:section')
     }
     );
 
-//Admin Route
-app.get('/admin', function (req, res) {
-    complaintModel.find(function (err, docs) {
-        if (err) { console.log(err) }
-        else {
-            console.log(docs);
-            res.render("admin", { complaints: docs });
+    //Solved Complaint
+    app.route('/solved-complaints')
+        .post(function (req, res) {
+            var id = req.body.id;
+            var isSolved = req.body.isSolved;
+            console.log(id);
+            console.log(isSolved);
+            complaintModel.findOneAndUpdate({ _id: id, isSolved: false }, { isSolved: true, dateResolved: new Date() }, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else { console.log("Successfully solved the complaint") }
 
-        }
+            });
+
+
+        });
+
+    //Admin Route
+    app.get('/admin', function (req, res) {
+        complaintModel.find({ isSolved: false }, function (err, docs) {
+            if (err) { console.log(err) }
+            else {
+                res.send(docs);
+            }
+        });
+    });
+
+    app.get('/admin-page', function (req, res) {
+        res.render('admin');
 
     });
 
-});
-
-app.listen(3000, function () {
-    console.log("Server running on port 3000");
-});
+    app.listen(3000, function () {
+        console.log("Server running on port 3000");
+    });

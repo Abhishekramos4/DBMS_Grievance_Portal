@@ -1,12 +1,13 @@
-html,body{
+html,
+body {
   height: 100%;
   margin: 0;
 }
-.wrapper{
+.wrapper {
   padding-top: 5%;
-  padding-bottom:5%;
+  padding-bottom: 5%;
   height: 100%;
-  background-color:#282828;
+  background-color: #282828;
 }
 .formStyle {
   padding: 5%;
@@ -18,29 +19,26 @@ html,body{
   width: 100%;
   font-size: large;
 }
-.jumbotron{
+.jumbotron {
   width: 80%;
   margin: 0 auto;
   height: 80%;
-
 }
-.container-fluid{
-padding-top: 5%;
-padding-bottom: 5%;
-
+.container-fluid {
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
-.child1{
+.child1 {
   width: 50%;
   display: inline-block;
   height: 100%;
 }
-.imageContainer{
-background-image: url('VJTI.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-border-radius: 2%;
+.imageContainer {
+  background-image: url("VJTI.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 2%;
 }
-
 
 /* SideBar CSS */
 .sidenav {
@@ -50,13 +48,13 @@ border-radius: 2%;
   z-index: 1;
   top: 83px;
   left: 0;
-  background-color:black;
+  background-color: black;
   overflow-x: hidden;
   padding-top: 20px;
 }
-.active{
-background-color: white;
-color: black;
+.active {
+  background-color: white;
+  color: black;
 }
 .sidenav a {
   padding: 6px 8px 6px 16px;
@@ -75,10 +73,42 @@ color: black;
   top: 82px;
   margin-left: 20%; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
+  /* padding: 0px 10px; */
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* Tabs CSS */
+.tablink1 {
+  border: none;
+  outline: none;
+  width: 100%;
+  float: left;
+  background-color: black;
+  color: white;
+}
+.tablink2 {
+  border: none;
+  outline: none;
+  width: 100%;
+  float: left;
+  background-color: white;
+  color: #818181;;
+}
+.tablink:hover {
+  background-color: #777;
+}
+
+.tablink1:focus{
+  outline: none;
+}
+.tablink2:focus{
+  outline: none;
 }

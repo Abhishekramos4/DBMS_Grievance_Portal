@@ -32,8 +32,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Jquery -->
     <script>
-     
+      
+
       $(document).ready(function () {
+
         $("#location").change(function () {
           if ($("#location").val() == "Hostel") {
             $("#section").html(
@@ -65,7 +67,7 @@
           var location = encodeURIComponent($("#location").val());
           var section = encodeURIComponent($("#section").val());
 
-          var Url = "/complaints-pending/" + location + "/" + section;
+          var Url = "/complaints-solved/" + location + "/" + section;
           var completeHTML = "";
           $.getJSON(Url, function (data) {
             $("#list").empty();
@@ -87,6 +89,10 @@
                      <h4>Date Issued:" +
                 value["dateIssued"] +
                 "</h4>\
+                <hr style='width: 90%;' />\
+                     <h4>Date Resolved:" +
+                value["dateResolved"] +
+                "</h4>\
                      </div>\
                      ";
               completeHTML += x;
@@ -94,7 +100,22 @@
             $("#sortedlist").html(completeHTML);
           });
         });
-       
+        // var arr = document.getElementsByClassName("tabs");
+        // function changeTab() {
+        //   for (var i = 0; i < arr.length; i++) {
+        //     if(arr[i].classList.contains("tablink2"))
+        //     {arr[i].disabled=true;
+        //     arr[i].classList.toggle("tablink1");
+        //     arr[i].classList.toggle("tablink2");}
+        //     else{
+        //       arr[i].classList.toggle("tablink1");
+        //     arr[i].classList.toggle("tablink2")
+        //     }
+        //     // arr[i].classList.t("tablink2");
+        //     // arr[i].classList.add("tablink1");
+        //   }
+        // }
+
         // $("#pending").click(
         // $.getJSON()
 
@@ -190,20 +211,20 @@
       <a href="/profile-register" class="links">Register Complaint</a>
     </div>
     <div class="main">
-      <script>
-      function link1() {
-        location.assign("/profile");
-      }
-      function link2(){
-          location.assign("/profile-solved");
-      }
-      </script>
+        <script>
+            function link1() {
+              location.assign("/profile");
+            }
+            function link2(){
+                location.assign("/profile-solved");
+            }
+            </script>
       <div class="row">
         <div class="col-sm" style="padding: 0%;">
-          <button class="tablink2 tabs" id="pending" onclick="link1()">Pending</button>
+          <button class="tablink1 tabs" id="pending" onclick="link1()">Pending</button>
         </div>
         <div class="col-sm" style="padding: 0%;">
-          <button class="tablink1 tabs" id="solved" onclick="link2()">Solved</button>
+          <button class="tablink2 tabs" id="solved" onclick="link2()">Solved</button>
         </div>
       </div>
       <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
@@ -262,6 +283,11 @@
           <h4>
             Date Issued:<%=complaint.dateIssued%>
           </h4>
+          <hr style="width: 90%;" />
+          <h4>
+            Date Resolved:<%=complaint.dateResolved%>
+          </h4>
+
         </div>
         <% });%>
       </div>

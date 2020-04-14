@@ -28,22 +28,71 @@
     ></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/profile.css" />
+    <!-- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Jquery -->
+    <script>
+      $(document).ready(function () {
+        $.getJSON("/admin", function (data) {
+          var completeHTML = "";
+          $.each(data, function (index, value) {
+            var singlecomplaint = `singlecomplaint${index}`;
+            var complaintid = `id${index}`;
+            var buttonid = `solved${index}`;
+            var x =
+              "<div id='" +
+              singlecomplaint +
+              "'>\
+                <div class='Container' style='margin: 1% 3% 1% 3%;border: 1px solid grey;padding: 2%;border-radius: 50px;box-shadow: 1px 1px 2px 1px grey;''>\
+                  <h4 id='" +
+              complaintid +
+              "'>Complaint ID:" +
+              value["_id"] +
+              "</h4>\
+                     <hr style='width: 90%;' />\
+                  <h4>Location :" +
+              value["location"] +
+              "</h4>\
+                     <hr style='width: 90%;' />\
+                     <h4>Section:" +
+              value["section"] +
+              "</h4>\
+                     <hr style='width: 90%;' />\
+                     <h4>Description:" +
+              value["description"] +
+              "</h4>\
+                     <hr style='width: 90%;' />\
+                     <h4>Date:" +
+              value["dateIssued"] +
+              "</h4>\
+                <button id='" +
+              buttonid +
+              "'class='btn btn-dark solvedbtn'>Solved</button>\
+                </div>\
+                </div>\
+                     ";
+            completeHTML += x;
+          });
+          $("#complaintdiv").html(completeHTML);
+          var arr = $(".solvedbtn");
+          for (var i = 0; i < arr.length; i++) {
+            arr[i].addEventListener("click", function () {
+              var complaintid=`id${this.id[6]}`
+              var id=document.getElementById(complaintid).textContent.slice(13);
+              $(`#singlecomplaint${this.id[6]}`).empty();
+              $.post('/solved-complaints',{id:id,isSolved:true},
+              function(){console.log("Post request sent");
+              });
+
+            });
+          }
+
+          $(".solvedbtn").click(function () {});
+        });
+      });
+    </script>
   </head>
   <body>
-    <%complaints.forEach(function (complaint) { %>
-    <div class="name-id">
-      <h3>Complaint ID :<%=complaint._id%></h3>
-      <hr style="width: 90%;" />
-      <h3>Section :<%=complaint.section%></h3>
-      <hr style="width: 90%;" />
-      <h4>Complaint :<%=complaint.complaintText%></h4>
-      <hr style="width: 90%;" />
-      <h4>
-        Date Issued:<%=complaint.dateIssued%>
-        <!-- <%=complaint.dateIssued.getDate().toString()%>/<%=complaint.dateIssued.getMonth().toString()%>/<%=complaint.dateIssued.getFullYear().toString()%> -->
-        
-    </h4>
-    </div>
-    <% });%>
+    <div id="complaintdiv"></div>
   </body>
 </html>
