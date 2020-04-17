@@ -28,30 +28,31 @@
     ></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
-
+    <!-- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Jquery -->
     <script>
-      function link() {
-        location.assign("/sign-up");
-      }
+      //  $('#disable')
     </script>
   </head>
   <body>
     <nav
       class="navbar navbar-expand-lg navbar-light"
       style="
-      border-bottom: 1px solid rgba(34, 34, 34, 0.05);
-      background-color: #fff;
-      box-shadow: 1px 1px 2px 1px grey;
-    "
+        border-bottom: 1px solid rgba(34, 34, 34, 0.05);
+        background-color: #fff;
+        box-shadow: 1px 1px 2px 1px grey;
+      "
     >
       <a class="navbar-brand" href="/"
-        
-      ><img
+        ><img
           src="https://www.careerindia.com/img/400x100/2012/05/18-vjtimumbai.jpg"
           class="d-inline-block align-top"
           height="55"
           width="60"
-        /><span style="font-size: 2rem; color: grey;"> Grievance Portal</span></a
+        /><span style="font-size: 2rem; color: grey;">
+          Grievance Portal</span
+        ></a
       >
       <button
         class="navbar-toggler"
@@ -63,69 +64,108 @@
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
+       
       </button>
-
-      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
-      </div> -->
     </nav>
-
-    <div class="container-fluid">
-      <div class="row jumbotron">
-        <div class="imageContainer col-lg-5 col-m-7 col-xs-12"></div>
-        <div class="col-lg-7 col-m-7 col-xs-12">
-          <h3 style="text-align: center;">VJTI Grievance Portal</h3>
-          <form class="formStyle" method="POST" action="/">
-            <h5 style="color: rgb(110, 109, 109); margin-bottom: 2%;">
-              Sign into your account
-            </h5>
-            <input
-              type="text"
-              name="collegeID"
-              id="inputID"
-              class="form-control inputStyle"
-              placeholder="College ID"
-              required
-              autofocus
-            />
-            <input
-              type="password"
-              name="password"
-              id="inputPassword"
-              class="form-control inputStyle"
-              placeholder="Password"
-              required
-            />
+    <div
+      class="Container"
+      style="
+        width: 40%;
+        margin: 4% auto;
+        border: 1px solid grey;
+        border-radius: 10px;
+        box-shadow: 1px 1px 2px 1px grey;
+      "
+    >
+      <div class="imageContainer" style="height: 250px;"></div>
+      <!-- <h3 style="text-align: center; color: #818181 ;" >VJTI Grievance Portal</h3> -->
+      <form class="formStyle" method="POST" action="/">
+        <h5 style="color: rgb(110, 109, 109); margin-bottom: 2%;">
+          Sign into your account
+        </h5>
+        <input
+          style="margin-bottom: 2%;"
+          type="text"
+          name="collegeID"
+          id="inputID"
+          class="form-control"
+          placeholder="College ID"
+          required
+          autofocus
+        />
+        <input
+          style="margin-bottom: 1%;"
+          type="password"
+          name="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <a href="" class="forget" style="margin-bottom: 5%;"
+          >Forgot Password ?</a
+        >
+        <div class="row">
+          <div class="col-sm" style="text-align: left;">
             <label>
               <input type="checkbox" class="checkStyle" /> Remember Me
             </label>
             <br />
-            <button class="btn btn-outline-primary btnStyle">Submit</button>
-            <div class="row" style="padding: 3.5%;">
-              <button
-                class="btn btn-outline-success col-lg-6 col-xs-12"
-                id="Register"
-                onclick="link()"
-              >
-                New User? SignUp
-              </button>
-              <button
-                class="btn btn-outline-danger col-xs-12 col-lg-6"
-                id="ForgotPassword"
-              >
-                Forgot Password
-              </button>
-            </div>
-          </form>
+          </div>
+          <div class="col-sm" style="text-align: right;">
+            <button class="btn btn-dark" style="width: 60%; background-color: black;">Log In</button>
+          </div>
         </div>
+      </form>
+      <div
+     
+        style="
+        padding: 2%;
+          background-color: black;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          text-align: center;
+        "
+      >
+        <a href="/sign-up" class="footerlinks" style="font-size: 1.2rem;"
+          >New User ? Sign-Up</a
+        >
       </div>
     </div>
   </body>
+  <footer>
+    <div
+      class="container-fluid"
+      style="background-color: black; color: white; padding: 1% 2% 2% 2%;"
+    >
+      <div class="row footer">
+        <div class="col-sm" style="text-align: center;">
+          <a href="" class="footerlinks" style="pointer-events: none;">Links</a>
+          <div style="width: 45%; margin: 0 auto;">
+            <a
+              href="http://www.vjti.ac.in/"
+              class="footerlinks"
+              style="font-size: 1rem;"
+              >VJTI Website</a
+            >
+            <a
+              href="http://www.rlypassconcession.com/"
+              class="footerlinks"
+              style="font-size: 1rem;"
+              >Railway Concession</a
+            >
+          </div>
+        </div>
+        <div class="col-sm" style="text-align: center;">
+          <a href="" class="footerlinks">Contact Us</a>
+        </div>
+        <div class="col-sm" style="text-align: center;">
+          <a href="" class="footerlinks">About</a>
+        </div>
+        <div class="col-sm" style="text-align: center;">
+          <a href="" class="footerlinks">SiteMap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>

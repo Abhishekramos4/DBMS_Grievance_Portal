@@ -32,14 +32,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Jquery -->
     <script>
-      
-
+     
       $(document).ready(function () {
-
         $("#location").change(function () {
           if ($("#location").val() == "Hostel") {
             $("#section").html(
               "<option value='All'>All</option>\
+              <option value='Security'>Security</option>\
               <option value='Staff'>Staff</option>\
               <option value='Rooms'>Rooms</option>\
               <option value='Electric Equipments'>Electric Equipments</option>\
@@ -50,7 +49,7 @@
             );
           } else if ($("#location").val() == "College Campus") {
             $("#section").html(
-              " <option value='All'>All</option>\
+              "<option value='All'>All</option>\
               <option value='Security'>Security</option>\
               <option value='Lab Equipments'>Lab Equipments</option>\
               <option value='Class Rooms'>Class Rooms</option>\
@@ -68,7 +67,7 @@
           var location = encodeURIComponent($("#location").val());
           var section = encodeURIComponent($("#section").val());
 
-          var Url = "/complaints-solved/" + location + "/" + section;
+          var Url = "/complaints-pending-my/" + location + "/" + section;
           var completeHTML = "";
           $.getJSON(Url, function (data) {
             $("#list").empty();
@@ -90,10 +89,6 @@
                      <h4>Date Issued:" +
                 value["dateIssued"] +
                 "</h4>\
-                <hr style='width: 90%;' />\
-                     <h4>Date Resolved:" +
-                value["dateResolved"] +
-                "</h4>\
                      </div>\
                      ";
               completeHTML += x;
@@ -101,27 +96,7 @@
             $("#sortedlist").html(completeHTML);
           });
         });
-        // var arr = document.getElementsByClassName("tabs");
-        // function changeTab() {
-        //   for (var i = 0; i < arr.length; i++) {
-        //     if(arr[i].classList.contains("tablink2"))
-        //     {arr[i].disabled=true;
-        //     arr[i].classList.toggle("tablink1");
-        //     arr[i].classList.toggle("tablink2");}
-        //     else{
-        //       arr[i].classList.toggle("tablink1");
-        //     arr[i].classList.toggle("tablink2")
-        //     }
-        //     // arr[i].classList.t("tablink2");
-        //     // arr[i].classList.add("tablink1");
-        //   }
-        // }
-
-        // $("#pending").click(
-        // $.getJSON()
-
-        // );
-        // $("#solved").click();
+       
       });
     </script>
   </head>
@@ -166,15 +141,14 @@
             >
           </li>
           <li
-            class="nav-item dropdown"
+            class="nav-item"
             style="margin-left: 5px; margin-right: 5px;"
           >
             <a
               class="nav-link"
               href="#"
-              id="navbarDropdown"
+              id="profile"
               role="button"
-              data-toggle="dropdown"
             >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
@@ -185,15 +159,14 @@
             </a>
           </li>
           <li
-            class="nav-item dropdown"
+            class="nav-item"
             style="margin-left: 5px; margin-right: 5px;"
           >
             <a
               class="nav-link"
               href="#"
-              id="navbarDropdown"
+              id="notifications"
               role="button"
-              data-toggle="dropdown"
             >
               <img
                 src="https://cdn0.iconfinder.com/data/icons/basic-universal-1/30/Basic-86-512.png"
@@ -207,25 +180,25 @@
       </div>
     </nav>
     <div class="sidenav">
-      <a href="/profile" class="links active">All Complaints</a>
-      <a href="" class="links">My Complaints</a>
+      <a href="/profile" class="links">All Complaints</a>
+      <a href="/profile-mycomplaints" class="links active">My Complaints</a>
       <a href="/profile-register" class="links">Register Complaint</a>
     </div>
     <div class="main">
-        <script>
-            function link1() {
-              location.assign("/profile");
-            }
-            function link2(){
-                location.assign("/profile-solved");
-            }
-            </script>
+      <script>
+      function link1() {
+        location.assign("/profile-mycomplaints");
+      }
+      function link2(){
+          location.assign("/profile-mycomplaints-solved");
+      }
+      </script>
       <div class="row">
         <div class="col-sm" style="padding: 0%;">
-          <button class="tablink1 tabs" id="pending" onclick="link1()">Pending</button>
+          <button class="tablink2 tabs" id="pending" onclick="link1()">Pending</button>
         </div>
         <div class="col-sm" style="padding: 0%;">
-          <button class="tablink2 tabs" id="solved" onclick="link2()">Solved</button>
+          <button class="tablink1 tabs" id="solved" onclick="link2()">Solved</button>
         </div>
       </div>
       <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
@@ -284,11 +257,6 @@
           <h4>
             Date Issued:<%=complaint.dateIssued%>
           </h4>
-          <hr style="width: 90%;" />
-          <h4>
-            Date Resolved:<%=complaint.dateResolved%>
-          </h4>
-
         </div>
         <% });%>
       </div>

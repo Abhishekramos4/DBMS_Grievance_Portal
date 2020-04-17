@@ -37,7 +37,8 @@
         $("#location").change(function () {
           if ($("#location").val() == "Hostel") {
             $("#section").html(
-              "<option value='Security'>Security</option>\
+              "<option value='All'>All</option>\
+              <option value='Security'>Security</option>\
               <option value='Staff'>Staff</option>\
               <option value='Rooms'>Rooms</option>\
               <option value='Electric Equipments'>Electric Equipments</option>\
@@ -48,7 +49,8 @@
             );
           } else if ($("#location").val() == "College Campus") {
             $("#section").html(
-              "<option value='Security'>Security</option>\
+              "<option value='All'>All</option>\
+              <option value='Security'>Security</option>\
               <option value='Lab Equipments'>Lab Equipments</option>\
               <option value='Class Rooms'>Class Rooms</option>\
               <option value='Electric Equipments'>Electric Equipments</option>\
@@ -95,11 +97,6 @@
           });
         });
        
-        // $("#pending").click(
-        // $.getJSON()
-
-        // );
-        // $("#solved").click();
       });
     </script>
   </head>
@@ -144,15 +141,14 @@
             >
           </li>
           <li
-            class="nav-item dropdown"
+            class="nav-item"
             style="margin-left: 5px; margin-right: 5px;"
           >
             <a
               class="nav-link"
               href="#"
-              id="navbarDropdown"
+              id="profile"
               role="button"
-              data-toggle="dropdown"
             >
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
@@ -163,15 +159,14 @@
             </a>
           </li>
           <li
-            class="nav-item dropdown"
+            class="nav-item"
             style="margin-left: 5px; margin-right: 5px;"
           >
             <a
               class="nav-link"
               href="#"
-              id="navbarDropdown"
+              id="notifications"
               role="button"
-              data-toggle="dropdown"
             >
               <img
                 src="https://cdn0.iconfinder.com/data/icons/basic-universal-1/30/Basic-86-512.png"
@@ -186,7 +181,7 @@
     </nav>
     <div class="sidenav">
       <a href="/profile" class="links active">All Complaints</a>
-      <a href="" class="links">My Complaints</a>
+      <a href="/profile-mycomplaints" class="links" >My Complaints</a>
       <a href="/profile-register" class="links">Register Complaint</a>
     </div>
     <div class="main">
@@ -257,7 +252,7 @@
           <hr style="width: 90%;" />
           <h4>Section :<%=complaint.section%></h4>
           <hr style="width: 90%;" />
-          <h4>Complaint :<%=complaint.description%></h4>
+          <h4>Description :<%=complaint.description%></h4>
           <hr style="width: 90%;" />
           <h4>
             Date Issued:<%=complaint.dateIssued%>

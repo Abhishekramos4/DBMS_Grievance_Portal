@@ -12,9 +12,9 @@ body {
 .formStyle {
   padding: 5%;
 }
-.inputStyle {
+/* .inputStyle {
   margin-bottom: 2%;
-}
+} */
 .btnStyle {
   width: 100%;
   font-size: large;
@@ -34,10 +34,12 @@ body {
   height: 100%;
 }
 .imageContainer {
-  background-image: url("VJTI.jpg");
+  background-image: url("VJTIBW.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 2%;
+  border-top-left-radius: 10px;
+  border-top-right-radius:10px ;
+  
 }
 
 /* SideBar CSS */
@@ -112,3 +114,27 @@ body {
 .tablink2:focus{
   outline: none;
 }
+.forget{
+  padding: 1%;
+  text-decoration: none;
+  font-size: 1rem;
+  color: #818181;
+  display: block;
+}
+.forget:hover
+{ text-decoration: none;
+color:black; }
+
+/* Footer */
+
+.footerlinks{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #818181;
+  display: block;
+}
+
+.footerlinks:hover
+{ text-decoration: none;
+color: white; }

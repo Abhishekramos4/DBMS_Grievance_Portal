@@ -68,7 +68,7 @@
           var location = encodeURIComponent($("#location").val());
           var section = encodeURIComponent($("#section").val());
 
-          var Url = "/complaints-solved/" + location + "/" + section;
+          var Url = "/complaints-solved-my/" + location + "/" + section;
           var completeHTML = "";
           $.getJSON(Url, function (data) {
             $("#list").empty();
@@ -207,17 +207,17 @@
       </div>
     </nav>
     <div class="sidenav">
-      <a href="/profile" class="links active">All Complaints</a>
-      <a href="" class="links">My Complaints</a>
+      <a href="/profile" class="links">All Complaints</a>
+      <a href="" class="links active">My Complaints</a>
       <a href="/profile-register" class="links">Register Complaint</a>
     </div>
     <div class="main">
         <script>
             function link1() {
-              location.assign("/profile");
+              location.assign("/profile-mycomplaints");
             }
             function link2(){
-                location.assign("/profile-solved");
+                location.assign("/profile-mycomplaints-solved");
             }
             </script>
       <div class="row">

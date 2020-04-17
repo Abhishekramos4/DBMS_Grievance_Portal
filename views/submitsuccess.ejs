@@ -32,37 +32,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Jquery -->
     <script>
-      $(document).ready(function () {
-        $("#location").change(function () {
-          if ($("#location").val() == "Hostel") {
-            $("#section").html(
-              "<option value='Security'>Security</option>\
-              <option value='Staff'>Staff</option>\
-              <option value='Rooms'>Rooms</option>\
-              <option value='Electric Equipments'>Electric Equipments</option>\
-              <option value='Water Supply'>Water Supply</option>\
-              <option value='Mess'>Mess</option>\
-              <option value='Others'>Others</option>\
-"
-            );
-          } else if ($("#location").val() == "College Campus") {
-            $("#section").html(
-              "<option value='Security'>Security</option>\
-              <option value='Lab Equipments'>Lab Equipments</option>\
-              <option value='Class Rooms'>Class Rooms</option>\
-              <option value='Electric Equipments'>Electric Equipments</option>\
-              <option value='Washrooms'>Washrooms</option>\
-              <option value='Canteen'>Canteen</option>\
-              <option value='Others'>Others</option>\
-"
-            );
-          } else {
-            $("section").html("");
-          }
-        });
-
-        // $('#submit').click(function(){alert("hey")});
-      });
+     
     </script>
   </head>
   <body>
@@ -159,32 +129,12 @@
           border-radius: 20px;
         "
       >
-        <form action="/profile-register" method="post">
-          <div class="form-group">
-            <label for="location">Location</label>
+      <h4>You have successfully registered your complaint</h4>
+      <div class="row">
+        <div class="col-sm"><button class="btn btn-dark">Register Another Complaint</button></div>
+        <div class="col-sm"><button class="btn btn-dark">Go Home</button></div>
+      </div>
 
-            <select class="form-control" id="location" name="location">
-              <option value="" selected>--Select--</option>
-              <option value="College Campus">College Campus</option>
-              <option value="Hostel">Hostel</option>
-            </select>
-
-            <label for="section">Section</label>
-            <select id="section" class="form-control" name="section"></select>
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea
-              class="form-control"
-              id="description"
-              rows="5"
-              name="description"
-            ></textarea>
-          </div>
-          <button  id="submit" type="submit" class="btn btn-dark btn-lg" style="position: relative; left: 820px;">Submit</button>
-           
-          
-        </form>
       </div>
     </div>
   </body>
