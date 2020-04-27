@@ -3,6 +3,16 @@ body {
   height: 100%;
   margin: 0;
 }
+
+ .form-control:focus {
+  border-color: black;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(22, 22, 22, 0.6);
+}
+.custom-select:focus {
+  border-color: black;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(22, 22, 22, 0.6);
+}
+
 .wrapper {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -19,11 +29,7 @@ body {
   width: 100%;
   font-size: large;
 }
-.jumbotron {
-  width: 80%;
-  margin: 0 auto;
-  height: 80%;
-}
+
 .container-fluid {
   padding-top: 5%;
   padding-bottom: 5%;

@@ -66,29 +66,32 @@
         $("#apply").click(function () {
           var location = encodeURIComponent($("#location").val());
           var section = encodeURIComponent($("#section").val());
+          var duration=encodeURIComponent($('#duration').val());
 
-          var Url = "/complaints-pending/" + location + "/" + section;
+
+          var Url = "/complaints-pending/" + location + "/" + section + "/" +duration;
+          alert(Url);
           var completeHTML = "";
           $.getJSON(Url, function (data) {
             $("#list").empty();
             $.each(data, function (index, value) {
               var x =
-                "<div class='Container' style='margin: 1% 3% 1% 3%;border: 1px solid grey;padding: 2%;border-radius: 50px;box-shadow: 1px 1px 2px 1px grey;''>\
-                     <h4>Location :" +
+                "<div class='Container' style='margin: 1% 3% 1% 3%;border: 1px solid grey;padding: 2%;border-radius: 20px;box-shadow: 1px 1px 2px 1px grey;''>\
+                     <h5>Location:  " +
                 value["location"] +
-                "</h4>\
+                "</h5>\
                      <hr style='width: 90%;' />\
-                     <h4>Section:" +
+                     <h5>Section:" +
                 value["section"] +
-                "</h4>\
+                "</h5>\
                      <hr style='width: 90%;' />\
-                     <h4>Description:" +
+                     <h5>Description:  " +
                 value["description"] +
-                "</h4>\
+                "</h5>\
                      <hr style='width: 90%;' />\
-                     <h4>Date Issued:" +
-                value["dateIssued"] +
-                "</h4>\
+                     <h5>Date Issued:  " +
+                value["dateIssued"].toLocaleString() +
+                "</h5>\
                      </div>\
                      ";
               completeHTML += x;
@@ -203,10 +206,10 @@
       </div>
       <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
         <div class="form-row">
-          <div class="col-md-2">
+          <div class="col-md-1">
             <h4>Sort By:</h4>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <select
               class="form-control"
               id="location"
@@ -219,8 +222,15 @@
             </select>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <select id="section" class="form-control" name="section"></select>
+          </div>
+          <div class="col-md-3">
+            <select id="duration" class="form-control" name="section">
+              <option value="month" selected>Last Month</option>
+              <option value="week">Last Week</option>
+              <option value="today">Today</option>
+            </select>
           </div>
           <div class="col-md-2">
             <button
@@ -244,19 +254,19 @@
             margin: 1% 3% 1% 3%;
             border: 1px solid grey;
             padding: 2%;
-            border-radius: 50px;
+            border-radius: 20px;
             box-shadow: 1px 1px 2px 1px grey;
           "
         >
-          <h4>Location:<%=complaint.location%></h4>
+          <h5>Location:     <%=complaint.location%></h5>
           <hr style="width: 90%;" />
-          <h4>Section :<%=complaint.section%></h4>
+          <h5>Section:      <%=complaint.section%></h5>
           <hr style="width: 90%;" />
-          <h4>Description :<%=complaint.description%></h4>
+          <h5>Description:      <%=complaint.description%></h5>
           <hr style="width: 90%;" />
-          <h4>
-            Date Issued:<%=complaint.dateIssued%>
-          </h4>
+          <h5>
+            Date Issued:     <%=complaint.dateIssued.toLocaleString() %>
+          </h5>
         </div>
         <% });%>
       </div>

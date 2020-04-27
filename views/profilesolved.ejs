@@ -67,8 +67,9 @@
         $("#apply").click(function () {
           var location = encodeURIComponent($("#location").val());
           var section = encodeURIComponent($("#section").val());
+          var duration=encodeURIComponent($("#duration").val());
 
-          var Url = "/complaints-solved/" + location + "/" + section;
+          var Url = "/complaints-solved/" + location + "/" + section +"/" +duration;
           var completeHTML = "";
           $.getJSON(Url, function (data) {
             $("#list").empty();
@@ -230,10 +231,10 @@
       </div>
       <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
         <div class="form-row">
-          <div class="col-md-2">
+          <div class="col-md-1">
             <h4>Sort By:</h4>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <select
               class="form-control"
               id="location"
@@ -246,8 +247,15 @@
             </select>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <select id="section" class="form-control" name="section"></select>
+          </div>
+          <div class="col-md-3">
+            <select id="duration" class="form-control" name="section">
+              <option value="month" selected>Last Month</option>
+              <option value="week">Last Week</option>
+              <option value="today">Today</option>
+            </select>
           </div>
           <div class="col-md-2">
             <button

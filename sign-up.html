@@ -35,6 +35,33 @@
     />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
+     <!-- Jquery CDN -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script>
+           $(document).ready(
+             function()
+             {
+              var password=$('#password').val();
+               var repassword=$('#confirmPassword').val();
+               $('#confirmpassword').focus(function(){
+                    if(password!="")
+                    {if(password==repassword)
+                      {
+                        $('errMsg').html()=`<p>Re-entered password is wrong</p> `
+                      }
+
+                    }
+
+
+               });
+
+             
+               
+             }
+
+           );
+     </script>
+
   </head>
   <body>
     <nav
@@ -90,7 +117,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">First Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" name="fname"/>
+                <input type="text" class="form-control" placeholder="" name="fname" required/>
               </div>
             </div>
             <div class="col">
@@ -98,7 +125,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Last Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" name="lname" />
+                <input type="text" class="form-control" placeholder="" name="lname"  required/>
               </div>
             </div>
           </div>
@@ -110,7 +137,7 @@
                     ><i class="fas fa-at"></i
                   ></span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email" name="email" />
+                <input type="email" class="form-control" placeholder="Email" name="email" required />
               </div>
             </div>
             <div class="col">
@@ -135,7 +162,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="GenderSelect"><i class="fas fa-venus-mars"></i>Gender</label>
                 </div>
-                <select class="custom-select" id="GenderSelect" name="gender">
+                <select class="custom-select" id="GenderSelect" name="gender" required>
                   <option  value="Male"selected>Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -153,6 +180,7 @@
                   class="form-control"
                   placeholder="Date of Birth"
                   name="DOB"
+                  required
                 />
               </div>
             </div>
@@ -172,6 +200,7 @@
                   class="form-control"
                   placeholder="eg:181080039"
                   name="collegeID"
+                  required
                 />
               </div>
             </div>
@@ -180,7 +209,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="SemSelect">Semester</label>
                 </div>
-                <select class="custom-select" id="SemSelect" name="sem">
+                <select class="custom-select" id="SemSelect" name="sem" required>
                   <option  value="I"selected>I</option>
                   <option value="II">II</option>
                   <option value="III">III</option>
@@ -197,7 +226,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="YearSelect">Year</label>
                 </div>
-                <select class="custom-select" id="YearSelect" name="year">
+                <select class="custom-select" id="YearSelect" name="year" required>
                   <option  value="First"selected>First</option>
                   <option value="Second">Second</option>
                   <option value="Third">Third</option>
@@ -213,7 +242,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="programSelect" >Program</label>
                 </div>
-                <select class="custom-select" id="programSelect" name="program">
+                <select class="custom-select" id="programSelect" name="program" required>
                   <option  value="B.Tech"selected>B.Tech</option>
                   <option value="M.Tech">M.Tech</option>
                   <option value="PHD">Ph.D</option>
@@ -228,7 +257,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="departmentSelect">Department</label>
                 </div>
-                <select class="custom-select" id="departmentSelect" name="department">
+                <select class="custom-select" id="departmentSelect" name="department" required>
                   <option  value="IT"selected>Information Technology</option>
                   <option value="CS">Computer Science</option>
                   <option value="Elec">Electrical</option>
@@ -252,14 +281,19 @@
                 ><i class="fas fa-lock"></i
               ></span>
             </div>
-            <input type="password" class="form-control" placeholder="Password" name="password" />
+            <input id="password" type="password" class="form-control" placeholder="Password" name="password" required/>
             <input
+              id="confirmPassword"
               type="password"
               class="form-control"
               placeholder="Confirm Password"
               name="repassword"
+              required
             />
           </div>
+        </div>
+        <div id="errMsg">
+
         </div>
         <div style="text-align: right;"> <button class="btn btn-dark" style="margin-top: 5%;width: 20%; background-color: black;">
           Submit

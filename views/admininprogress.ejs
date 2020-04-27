@@ -73,6 +73,7 @@
               value["dateIssued"] +
               "</h5>\
               <hr />\
+             <div class='form-group'> <textarea id ='"+textid +"' class='form-control' placeholder='FeedBack'rows='5'></textarea></div>\
               <button id='" +
               buttonid +
               "'class='btn btn-dark solvedbtn' style='background-color:black'>Job Assigned</button>\
@@ -88,9 +89,9 @@
             arr[i].addEventListener("click", function () {
               var complaintid=`id${this.id[6]}`
               var id=document.getElementById(complaintid).textContent.slice(15);
-              // var feedback=$(`#text${this.id[6]}`).val();
+              var feedback=$(`#text${this.id[6]}`).val();
               $(`#singlecomplaint${this.id[6]}`).empty();
-              $.post('/inprogress-complaints',{id:id,inProgress:true},
+              $.post('/solved-complaints',{id:id,isSolved:true,feedback:feedback},
               function(){console.log("Post request sent");
               });
 
@@ -100,7 +101,7 @@
           $(".solvedbtn").click(function () {});
         });}
        
-        getData('/admin/All/month');
+        getData('/admin-to-solve/All/month');
 
 
 
@@ -142,7 +143,7 @@
           var section = encodeURIComponent($("#section").val());
           var duration =encodeURIComponent($('#duration').val());
 
-          var Url = "/admin/" + location + "/" + section +"/" +duration;
+          var Url = "/admin-to-solve/" + location + "/" + section +"/"+duration;
           getData(Url);
 
         });
@@ -197,8 +198,8 @@
     </div>
   </nav>
   <div class="sidenav">
-    <a href="/admin-page" class="links active">Pending Complaints</a>
-    <a href="/admin-page-progress" class="links" >In Progress</a>
+    <a href="/admin-page" class="links ">Pending Complaints</a>
+    <a href="/admin-page-progress" class="links active" >In Progress</a>
   </div>
   <div class="main" >
   <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
@@ -228,7 +229,7 @@
           <option value="week">Last Week</option>
           <option value="today">Today</option>
         </select>
-      </div>
+        </div>
       <div class="col-md-2">
         <button
           type="button"
