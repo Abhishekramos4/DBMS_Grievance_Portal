@@ -511,8 +511,8 @@ app.route('/inprogress-complaints')
         var inProgress = req.body.inProgress;
 
         console.log(id);
-        console.log(isSolved);
-        complaintModel.findOneAndUpdate({ _id: id, inProgress: false, }, { inProgress: true }, function (err) {
+        console.log(inProgress);
+        complaintModel.findOneAndUpdate({ _id: id, inProgress: false, }, { inProgress: inProgress }, function (err) {
             if (err) {
                 console.log(err);
             }
@@ -704,15 +704,167 @@ app.get('/admin-to-solve/:location/:section/:duration', function (req, res) {
 
 //ADMIN PAGE
 app.get('/admin-page', function (req, res) {
-    res.render('admin');
+    complaintModel.find({isSolved:false,inProgress:true}, function(err,docs){
+        if(err)
+        {console.log(err);
+        } 
+        else{
+            res.render('admin',{complaints:docs});
+        }
+        
+        
+
+    })
+    
 
 });
 //ADMIN IN PROGRESS PAGE
 app.get('/admin-page-progress', function (req, res) {
-    res.render('admininprogress');
+    complaintModel.find({isSolved:false,inProgress:false}, function(err,docs){
+        if(err)
+        {console.log(err);
+        } 
+        else{
+            res.render('admininprogress',{complaints:docs});
+        }
+    
+})});
+
+//Dashboard
+
+app.get('/dashboard',function(req,res){
+res.render('dashboard',{name: fnamedoc + " " + lnamedoc, collegeID: collegeIDdoc});
+
+
 })
 
+//Dash filter
+app.get('/dashboard-data/:type',async function(req,res){
+var type =req.params.type;
+if(type=='all')
+{ var data={};
+  var res1= await complaintModel.find({isSolved:true});
+  data.solved=res1.length;
+  
+  var res2=await complaintModel.find({isSolved:false});
+  data.pending=res2.length;
+  
+  var res3 = await complaintModel.find({location:'College Campus'}); 
+  data.college=res3.length;
+  
+  var res4=await complaintModel.find({location:'Hostel'});
+  data.hostel=res4.length;
+  
+  var res5=await complaintModel.find({location:'Hostel',section:'Security'});
+  data.hostelSecurity=res5.length;
+  
+  var res6=await complaintModel.find({location:'Hostel',section:'Staff'});
+  data.hostelStaff=res6.length;
+  
+  var res7=await complaintModel.find({location:'Hostel',section:'Rooms'});
+  data.hostelRooms=res7.length;
+  
+  var res8=await complaintModel.find({location:'Hostel',section:'Water Supply'});
+  data.hostelWater=res8.length;
+  
+  var res9=await complaintModel.find({location:'Hostel',section:'Mess'});
+  data.hostelMess=res9.length;
+  
+  var res10=await complaintModel.find({location:'Hostel',section:'Electric Equipments'});
+  data.hostelElectric=res10.length;
+  
+  var res11=await complaintModel.find({location:'Hostel',section:'Others'});
+  data.hostelOthers=res11.length;
 
+  var res12=await complaintModel.find({location:'College Campus',section:'Security'});
+  data.collegeSecurity=res12.length;
+  
+  var res13=await complaintModel.find({location:'College Campus',section:'Washrooms'});
+  data.collegeWash=res13.length;
+  
+  var res14=await complaintModel.find({location:'College Campus',section:'Lab Equipments'});
+  data.collegeLab=res14.length;
+  
+  var res15=await complaintModel.find({location:'College Campus',section:'Class Rooms'});
+  data.collegeClass=res15.length;
+  
+  var res16=await complaintModel.find({location:'College Campus',section:'Canteen'});
+  data.collegeCanteen=res16.length;
+  
+  var res17=await complaintModel.find({location:'College Campus',section:'Electric Equipments'});
+  data.collegeElectric=res17.length;
+  
+  var res18=await complaintModel.find({location:'College Campus',section:'Others'});
+  data.collegeOthers=res18.length;
+ 
+  console.log(data);
+
+  
+  res.send(data);
+    
+}
+else{
+    var data={};
+  var res1= await complaintModel.find({isSolved:true,studentID:collegeIDdoc});
+  data.solved=res1.length;
+var res2=await complaintModel.find({isSolved:false,studentID:collegeIDdoc});
+  data.pending=res2.length;
+  var res3 = await complaintModel.find({location:'College Campus',studentID:collegeIDdoc}); 
+  data.college=res3.length;
+  var res4=await complaintModel.find({location:'Hostel',studentID:collegeIDdoc});
+  data.hostel=res4.length;
+  var res5=await complaintModel.find({location:'Hostel',section:'Security',studentID:collegeIDdoc});
+  data.hostelSecurity=res5.length;
+  
+  var res6=await complaintModel.find({location:'Hostel',section:'Staff',studentID:collegeIDdoc});
+  data.hostelStaff=res6.length;
+  
+  var res7=await complaintModel.find({location:'Hostel',section:'Rooms',studentID:collegeIDdoc});
+  data.hostelRooms=res7.length;
+  
+  var res8=await complaintModel.find({location:'Hostel',section:'Water Supply',studentID:collegeIDdoc});
+  data.hostelWater=res8.length;
+  
+  var res9=await complaintModel.find({location:'Hostel',section:'Mess',studentID:collegeIDdoc});
+  data.hostelMess=res9.length;
+  
+  var res10=await complaintModel.find({location:'Hostel',section:'Electric Equipments',studentID:collegeIDdoc});
+  data.hostelElectric=res10.length;
+  
+  var res11=await complaintModel.find({location:'Hostel',section:'Others',studentID:collegeIDdoc});
+  data.hostelOthers=res11.length;
+
+  var res12=await complaintModel.find({location:'College Campus',section:'Security',studentID:collegeIDdoc});
+  data.collegeSecurity=res12.length;
+  
+  var res13=await complaintModel.find({location:'College Campus',section:'Washrooms',studentID:collegeIDdoc});
+  data.collegeWash=res13.length;
+  
+  var res14=await complaintModel.find({location:'College Campus',section:'Lab Equipments',studentID:collegeIDdoc});
+  data.collegeLab=res14.length;
+  
+  var res15=await complaintModel.find({location:'College Campus',section:'Class Rooms',studentID:collegeIDdoc});
+  data.collegeClass=res15.length;
+  
+  var res16=await complaintModel.find({location:'College Campus',section:'Canteen',studentID:collegeIDdoc});
+  data.collegeCanteen=res16.length;
+  
+  var res17=await complaintModel.find({location:'College Campus',section:'Electric Equipments',studentID:collegeIDdoc});
+  data.collegeElectric=res17.length;
+  
+  var res18=await complaintModel.find({location:'College Campus',section:'Others',studentID:collegeIDdoc});
+  data.collegeOthers=res18.length;
+ 
+  
+  console.log(res1);
+  console.log(data);
+
+    console.log(data);
+    
+    res.send(data);
+}
+
+});
 
 
 app.listen(3000, function () {

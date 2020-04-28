@@ -74,27 +74,34 @@
           $.getJSON(Url, function (data) {
             $("#list").empty();
             $.each(data, function (index, value) {
+              var dateI =new Date(value['dateIssued']).toLocaleDateString('en-US');
+              var dateR =new Date(value['dateResolved']).toLocaleDateString('en-US');
+
               var x =
-                "<div class='Container' style='margin: 1% 3% 1% 3%;border: 1px solid grey;padding: 2%;border-radius: 50px;box-shadow: 1px 1px 2px 1px grey;''>\
-                     <h4>Location :" +
+                "<div class='Container' style='margin: 1% 3% 1% 3%;border: 1px solid grey;padding: 2%;border-radius: 20px;box-shadow: 1px 1px 2px 1px grey;''>\
+                     <h5>Location:  " +
                 value["location"] +
-                "</h4>\
-                     <hr style='width: 90%;' />\
-                     <h4>Section:" +
+                "</h5>\
+                     <hr/>\
+                     <h5>Section:  " +
                 value["section"] +
-                "</h4>\
-                     <hr style='width: 90%;' />\
-                     <h4>Description:" +
+                "</h5>\
+                     <hr  />\
+                     <h5>Complaint:  " +
                 value["description"] +
-                "</h4>\
-                     <hr style='width: 90%;' />\
-                     <h4>Date Issued:" +
-                value["dateIssued"] +
-                "</h4>\
-                <hr style='width: 90%;' />\
-                     <h4>Date Resolved:" +
-                value["dateResolved"] +
-                "</h4>\
+                "</h5>\
+                     <hr />\
+                     <h5>Date Issued:  " +
+               dateI +
+                "</h5>\
+                <hr />\
+                     <h5>Date Resolved:  " +
+                dateR +
+                "</h5>\
+                <hr />\
+                     <h5>Admin Feedback:  " +
+                value["adminFeedBack"] +
+                "</h5>\
                      </div>\
                      ";
               completeHTML += x;
@@ -166,7 +173,7 @@
               ></a
             >
           </li>
-          <li
+          <!-- <li
             class="nav-item dropdown"
             style="margin-left: 5px; margin-right: 5px;"
           >
@@ -184,25 +191,14 @@
                 width="30"
               />
             </a>
-          </li>
+          </li> -->
           <li
             class="nav-item dropdown"
             style="margin-left: 5px; margin-right: 5px;"
           >
-            <a
-              class="nav-link"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-            >
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/basic-universal-1/30/Basic-86-512.png"
-                alt="Profile"
-                height="30"
-                width="30"
-              />
-            </a>
+          <button class="btn btn-dark"  style='margin-top:5px' onclick="location.assign('/')">
+            Log Out
+           </button> 
           </li>
         </ul>
       </div>
@@ -211,6 +207,7 @@
       <a href="/profile" class="links">All Complaints</a>
       <a href="" class="links active">My Complaints</a>
       <a href="/profile-register" class="links">Register Complaint</a>
+      <a href="/dashboard" class="links">Dashboard</a>
     </div>
     <div class="main">
         <script>
@@ -232,7 +229,7 @@
       <form action="" style="margin: 1% 3% 1% 3%; padding: 2%;">
         <div class="form-row">
           <div class="col-md-1">
-            <h4>Sort By:</h4>
+            <h5>Filters:</h5>
           </div>
           <div class="col-md-3">
             <select
@@ -261,7 +258,7 @@
             <button
               type="button"
               class="btn btn-dark"
-              style="width: 100%; background-color: black;"
+              style="width: 100%; background-color: black; margin-bottom: 12px;"
               id="apply"
             >
               Apply
@@ -279,24 +276,27 @@
             margin: 1% 3% 1% 3%;
             border: 1px solid grey;
             padding: 2%;
-            border-radius: 50px;
+            border-radius: 20px;
             box-shadow: 1px 1px 2px 1px grey;
           "
         >
-          <h4>Location:<%=complaint.location%></h4>
-          <hr style="width: 90%;" />
-          <h4>Section :<%=complaint.section%></h4>
-          <hr style="width: 90%;" />
-          <h4>Complaint :<%=complaint.description%></h4>
-          <hr style="width: 90%;" />
-          <h4>
-            Date Issued:<%=complaint.dateIssued%>
-          </h4>
-          <hr style="width: 90%;" />
-          <h4>
-            Date Resolved:<%=complaint.dateResolved%>
-          </h4>
-
+          <h5>Location:  <%=complaint.location%></h5>
+          <hr />
+          <h5>Section:  <%=complaint.section%></h5>
+          <hr  />
+          <h5>Complaint:  <%=complaint.description%></h5>
+          <hr  />
+          <h5>
+            Date Issued:  <%=complaint.dateIssued.toLocaleDateString()%>
+          </h>
+          <hr  />
+          <h5>
+            Date Resolved: <%=complaint.dateResolved.toLocaleDateString()%>
+          </h5>
+          <hr  />
+          <h5>
+            Admin Feedback: <%=complaint.adminFeedBack%>
+          </h5>
         </div>
         <% });%>
       </div>
